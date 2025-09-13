@@ -1,0 +1,139 @@
+/* ====== COLOR VARIABLES ====== */
+:root {
+  --bg: #0f1724;        /* Background color for body */
+  --card: #0b1220;      /* Card-like container background */
+  --accent: #60a5fa;    /* Accent color for buttons, highlights */
+  --x-color: #fb7185;   /* Color for player X */
+  --o-color: #34d399;   /* Color for player O */
+  --muted: #94a3b8;     /* Muted/secondary text color */
+}
+
+/* Universal reset for box sizing */
+* { box-sizing: border-box }
+
+/* ====== BODY ====== */
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), #071025 120%);
+  color: #e6eef8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* ====== MAIN CONTAINER ====== */
+.container {
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* ====== HEADER ====== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+h1 { font-size: 20px; margin: 0 }
+.status { color: var(--muted); font-size: 14px }
+
+/* ====== GAME BOARD ====== */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3x3 grid */
+  gap: 10px;
+  margin: 16px 0;
+}
+
+/* ====== CELLS ====== */
+.cell {
+  aspect-ratio: 1/1; /* Square cells */
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: inset 0 -6px 18px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Hover effect for interactivity */
+.cell:hover { transform: translateY(-4px) }
+
+/* Disabled cell (after a move) */
+.cell.disabled { cursor: default; opacity: .95 }
+
+/* Styles for X and O */
+.cell.x { color: var(--x-color); font-weight: 700 }
+.cell.o { color: var(--o-color); font-weight: 700 }
+
+/* ====== CONTROLS ====== */
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ====== BUTTONS ====== */
+button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--muted);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .12s ease;
+}
+
+/* Primary action button (restart) */
+button.primary {
+  background: linear-gradient(90deg, var(--accent), #7dd3fc);
+  color: #041025;
+  border: none;
+  font-weight: 600;
+}
+
+/* ====== WINNING LINE INDICATOR ====== */
+.line {
+  height: 4px;
+  background: linear-gradient(90deg, var(--x-color), var(--o-color));
+  border-radius: 99px;
+  margin-top: 12px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all .35s ease;
+}
+
+/* Active state: show line */
+.line.show { opacity: 1; transform: scaleX(1) }
+
+/* ====== FOOTER ====== */
+footer {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ====== RESPONSIVE DESIGN ====== */
+@media (max-width: 420px) {
+  .cell {
+    font-size: 36px;
+    border-radius: 10px;
+  }
+}

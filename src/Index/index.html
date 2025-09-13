@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tres en raya</title>
+
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="../Styles/style.css" />
+
+  <!-- Link to Favicon -->  
+    <link rel="icon" href="../../assets/tres-en-raya.png" type="image/png">
+
+</head>
+<body>
+  <!-- Main container for the game -->
+  <div class="container" role="application" aria-label="Tres en raya">
+    
+    <!-- ====== HEADER ====== -->
+    <header>
+      <div>
+        <!-- Game title -->
+        <h1>Tres en raya</h1>
+        <!-- Dynamic status (whose turn, winner, or draw) -->
+        <div class="status" id="status">Turno: X</div>
+      </div>
+      <div>
+        <!-- Undo button (not implemented yet) -->
+        <button id="undoBtn" title="Deshacer (no implementado)">Deshacer</button>
+        <!-- Restart button -->
+        <button id="restartBtn" class="primary">Reiniciar</button>
+      </div>
+    </header>
+
+    <!-- ====== GAME BOARD ====== -->
+    <!-- The game cells will be generated dynamically via JavaScript -->
+    <div class="board" id="board" aria-live="polite"></div>
+
+    <!-- Visual effect: animated line when a player wins -->
+    <div class="line" id="lineIndicator"></div>
+
+    <!-- ====== CONTROLS ====== -->
+    <div class="controls">
+      <!-- Information about players -->
+      <div style="color:var(--muted);font-size:13px">Jugador humano: X — IA/otro: O</div>
+      <div>
+        <!-- Button to toggle between 2 players and AI mode -->
+        <button id="modeBtn">Modo: 2 jugadores</button>
+      </div>
+    </div>
+
+    <!-- ====== FOOTER / TIP ====== -->
+    <footer>
+      Tip: haz clic en las celdas o usa teclado (1–9).
+    </footer>
+  </div>
+
+  <!-- External JavaScript file (game logic) -->
+  <script src="../Scripts/script.js"></script>
+</body>
+</html>

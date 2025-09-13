@@ -1,0 +1,17 @@
+{
+  "name": "tres-en-raya",
+  "version": "1.0.0",
+  "description": "Un juego de tres en raya en JavaScript.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "tres en raya",
+    "juego",
+    "javascript"
+  ],
+  "author": "Joel Pita Vidal",
+  "license": "MIT",
+  "dependencies": {}
+}
