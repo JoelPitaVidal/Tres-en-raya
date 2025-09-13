@@ -1,14 +1,14 @@
-/* ====== COLOR VARIABLES ====== */
+/* ====== VARIABLES DE COLOR ====== */
 :root {
-  --bg: #0f1724;        /* Background color for body */
-  --card: #0b1220;      /* Card-like container background */
-  --accent: #60a5fa;    /* Accent color for buttons, highlights */
-  --x-color: #fb7185;   /* Color for player X */
-  --o-color: #34d399;   /* Color for player O */
-  --muted: #94a3b8;     /* Muted/secondary text color */
+  --bg: #0f1724;        /* Color de fondo del body */
+  --card: #0b1220;      /* Fondo del contenedor tipo tarjeta */
+  --accent: #60a5fa;    /* Color de acento para botones y resaltados */
+  --x-color: #fb7185;   /* Color para el jugador X */
+  --o-color: #34d399;   /* Color para el jugador O */
+  --muted: #94a3b8;     /* Color de texto secundario/atenuado */
 }
 
-/* Universal reset for box sizing */
+/* Reset universal para box-sizing */
 * { box-sizing: border-box }
 
 /* ====== BODY ====== */
@@ -24,7 +24,7 @@ body {
   padding: 24px;
 }
 
-/* ====== MAIN CONTAINER ====== */
+/* ====== CONTENEDOR PRINCIPAL ====== */
 .container {
   width: 100%;
   max-width: 520px;
@@ -35,7 +35,7 @@ body {
   border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* ====== HEADER ====== */
+/* ====== ENCABEZADO ====== */
 header {
   display: flex;
   justify-content: space-between;
@@ -46,17 +46,17 @@ header {
 h1 { font-size: 20px; margin: 0 }
 .status { color: var(--muted); font-size: 14px }
 
-/* ====== GAME BOARD ====== */
+/* ====== TABLERO DE JUEGO ====== */
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3x3 grid */
+  grid-template-columns: repeat(3, 1fr); /* Cuadrícula 3x3 */
   gap: 10px;
   margin: 16px 0;
 }
 
-/* ====== CELLS ====== */
+/* ====== CELDAS ====== */
 .cell {
-  aspect-ratio: 1/1; /* Square cells */
+  aspect-ratio: 1/1; /* Celdas cuadradas */
   background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
   border-radius: 12px;
   display: flex;
@@ -70,17 +70,17 @@ h1 { font-size: 20px; margin: 0 }
   border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* Hover effect for interactivity */
+/* Efecto hover para interactividad */
 .cell:hover { transform: translateY(-4px) }
 
-/* Disabled cell (after a move) */
+/* Celda deshabilitada (después de un movimiento) */
 .cell.disabled { cursor: default; opacity: .95 }
 
-/* Styles for X and O */
+/* Estilos para X y O */
 .cell.x { color: var(--x-color); font-weight: 700 }
 .cell.o { color: var(--o-color); font-weight: 700 }
 
-/* ====== CONTROLS ====== */
+/* ====== CONTROLES ====== */
 .controls {
   display: flex;
   gap: 8px;
@@ -88,7 +88,7 @@ h1 { font-size: 20px; margin: 0 }
   justify-content: space-between;
 }
 
-/* ====== BUTTONS ====== */
+/* ====== BOTONES ====== */
 button {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.06);
@@ -99,7 +99,7 @@ button {
   transition: all .12s ease;
 }
 
-/* Primary action button (restart) */
+/* Botón de acción principal (reiniciar) */
 button.primary {
   background: linear-gradient(90deg, var(--accent), #7dd3fc);
   color: #041025;
@@ -107,7 +107,7 @@ button.primary {
   font-weight: 600;
 }
 
-/* ====== WINNING LINE INDICATOR ====== */
+/* ====== INDICADOR DE LÍNEA GANADORA ====== */
 .line {
   height: 4px;
   background: linear-gradient(90deg, var(--x-color), var(--o-color));
@@ -119,10 +119,10 @@ button.primary {
   transition: all .35s ease;
 }
 
-/* Active state: show line */
+/* Estado activo: mostrar línea */
 .line.show { opacity: 1; transform: scaleX(1) }
 
-/* ====== FOOTER ====== */
+/* ====== PIE DE PÁGINA ====== */
 footer {
   margin-top: 12px;
   font-size: 12px;
@@ -130,7 +130,7 @@ footer {
   text-align: center;
 }
 
-/* ====== RESPONSIVE DESIGN ====== */
+/* ====== DISEÑO RESPONSIVO ====== */
 @media (max-width: 420px) {
   .cell {
     font-size: 36px;

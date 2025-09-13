@@ -1,46 +1,46 @@
-// ====== DOM ELEMENTS ======
-const boardEl = document.getElementById('board');        // Game board container
-const statusEl = document.getElementById('status');      // Status message (turn, winner, draw)
-const restartBtn = document.getElementById('restartBtn');// Restart button
-const modeBtn = document.getElementById('modeBtn');      // Switch between 2 players / AI mode
-const lineIndicator = document.getElementById('lineIndicator'); // Visual line when someone wins
+// ====== ELEMENTOS DEL DOM ======
+const boardEl = document.getElementById('board');        // Contenedor del tablero de juego
+const statusEl = document.getElementById('status');      // Mensaje de estado (turno, ganador, empate)
+const restartBtn = document.getElementById('restartBtn');// Botón de reinicio
+const modeBtn = document.getElementById('modeBtn');      // Cambiar entre 2 jugadores / modo IA
+const lineIndicator = document.getElementById('lineIndicator'); // Línea visual cuando alguien gana
 
-// ====== GAME STATE ======
-let board = Array(9).fill(null); // Represents the 9 cells of the board: null | 'X' | 'O'
-let current = 'X';               // Current player ('X' always starts)
-let running = true;              // Game active state
-let twoPlayers = true;           // true = 2 players, false = vs AI
+// ====== ESTADO DEL JUEGO ======
+let board = Array(9).fill(null); // Representa las 9 celdas del tablero: null | 'X' | 'O'
+let current = 'X';               // Jugador actual ('X' siempre empieza)
+let running = true;              // Estado activo del juego
+let twoPlayers = true;           // true = 2 jugadores, false = contra IA
 
-// All possible winning combinations (rows, columns, diagonals)
+// Todas las combinaciones posibles de victoria (filas, columnas, diagonales)
 const wins = [
   [0,1,2],[3,4,5],[6,7,8],
   [0,3,6],[1,4,7],[2,5,8],
   [0,4,8],[2,4,6]
 ];
 
-// ====== CREATE BOARD ======
+// ====== CREAR TABLERO ======
 function createCells(){
-  boardEl.innerHTML = ''; // Clear previous board
+  boardEl.innerHTML = ''; // Limpiar tablero anterior
   for(let i=0;i<9;i++){
     const cell = document.createElement('button');
     cell.className = 'cell';
-    cell.dataset.index = i; // Store cell index
-    cell.setAttribute('aria-label', 'Cell ' + (i+1));
-    // Events: click or keyboard input
+    cell.dataset.index = i; // Guardar índice de la celda
+    cell.setAttribute('aria-label', 'Celda ' + (i+1));
+    // Eventos: clic o teclado
     cell.addEventListener('click', onCellClick);
     cell.addEventListener('keydown', onCellKey);
     boardEl.appendChild(cell);
   }
 }
 
-// ====== KEYBOARD SUPPORT ======
+// ====== SOPORTE DE TECLADO ======
 function onCellKey(e){
   const index = Number(this.dataset.index);
-  // Enter or Space acts like clicking the cell
+  // Enter o Space actúan como un clic en la celda
   if(e.key === 'Enter' || e.key === ' '){
     e.preventDefault(); this.click();
   }
-  // Keys 1–9 select the corresponding cell
+  // Teclas 1–9 seleccionan la celda correspondiente
   if(/^[1-9]$/.test(e.key)){
     const keyIndex = Number(e.key) - 1;
     const target = boardEl.querySelector('[data-index="'+keyIndex+'"]');
@@ -48,101 +48,101 @@ function onCellKey(e){
   }
 }
 
-// ====== HANDLE CELL CLICK ======
+// ====== MANEJAR CLIC EN CELDA ======
 function onCellClick(e){
   const idx = Number(this.dataset.index);
-  // Ignore if game ended or cell already filled
+  // Ignorar si el juego terminó o la celda ya está llena
   if(!running || board[idx]) return;
   makeMove(idx, current);
-  // If AI mode and it's now O's turn, let AI play
+  // Si está en modo IA y ahora es turno de O, dejar que la IA juegue
   if(running && !twoPlayers && current === 'O'){
-    setTimeout(aiMove, 200); // Small delay for realism
+    setTimeout(aiMove, 200); // Pequeño retraso para realismo
   }
 }
 
-// ====== MAKE A MOVE ======
+// ====== REALIZAR MOVIMIENTO ======
 function makeMove(idx, player){
-  board[idx] = player; // Update board state
+  board[idx] = player; // Actualizar estado del tablero
   const cell = boardEl.querySelector('[data-index="'+idx+'"]');
-  cell.textContent = player;             // Show symbol on the board
-  cell.classList.add(player.toLowerCase()); // Add styling class (x/o)
-  cell.classList.add('disabled');        // Disable cell
-  checkGame();                           // Check if win/draw
+  cell.textContent = player;             // Mostrar símbolo en la celda
+  cell.classList.add(player.toLowerCase()); // Añadir clase de estilo (x/o)
+  cell.classList.add('disabled');        // Deshabilitar celda
+  checkGame();                           // Comprobar si hay victoria o empate
   if(running){
-    // Switch turn
+    // Cambiar turno
     current = current === 'X' ? 'O' : 'X';
     updateStatus();
   }
 }
 
-// ====== UPDATE STATUS MESSAGE ======
+// ====== ACTUALIZAR MENSAJE DE ESTADO ======
 function updateStatus(){
-  statusEl.textContent = running ? ('Turn: ' + current) : statusEl.textContent;
+  statusEl.textContent = running ? ('Turno: ' + current) : statusEl.textContent;
 }
 
-// ====== CHECK WIN OR DRAW ======
+// ====== COMPROBAR VICTORIA O EMPATE ======
 function checkGame(){
-  // Check winning combinations
+  // Comprobar combinaciones ganadoras
   for(const comb of wins){
     const [a,b,c] = comb;
     if(board[a] && board[a] === board[b] && board[a] === board[c]){
       running = false;
-      highlightWin(comb); // Highlight winning cells
-      statusEl.textContent = '🎉 ' + board[a] + ' wins!';
+      highlightWin(comb); // Resaltar celdas ganadoras
+      statusEl.textContent = '🎉 ' + board[a] + ' gana!';
       return;
     }
   }
-  // Check draw (all cells filled and no winner)
+  // Comprobar empate (todas las celdas llenas y sin ganador)
   if(board.every(Boolean)){
     running = false;
-    statusEl.textContent = 'Draw 🤝';
+    statusEl.textContent = 'Empate 🤝';
   }
 }
 
-// ====== HIGHLIGHT WINNING COMBINATION ======
+// ====== RESALTAR COMBINACIÓN GANADORA ======
 function highlightWin(comb){
   comb.forEach(i=>{
     const el = boardEl.querySelector('[data-index="'+i+'"]');
-    // Visual effect on winning cells
+    // Efecto visual en las celdas ganadoras
     el.style.boxShadow = '0 8px 30px rgba(0,0,0,0.6), 0 0 0 4px rgba(255,255,255,0.02) inset';
   });
-  // Show animated line indicator
+  // Mostrar línea animada
   lineIndicator.classList.add('show');
   setTimeout(()=> lineIndicator.classList.remove('show'), 1300);
 }
 
-// ====== SIMPLE AI MOVE ======
+// ====== MOVIMIENTO SIMPLE DE IA ======
 function aiMove(){
   if(!running) return;
-  // 1) Try to win
+  // 1) Intentar ganar
   for(let i=0;i<9;i++) if(!board[i]){
     board[i] = 'O';
     if(isWinner('O')){ board[i] = null; return makeMove(i,'O'); }
     board[i] = null;
   }
-  // 2) Block opponent
+  // 2) Bloquear al oponente
   for(let i=0;i<9;i++) if(!board[i]){
     board[i] = 'X';
     if(isWinner('X')){ board[i] = null; return makeMove(i,'O'); }
     board[i] = null;
   }
-  // 3) Take center if available
+  // 3) Tomar el centro si está disponible
   if(!board[4]) return makeMove(4,'O');
-  // 4) Take a random corner if available
+  // 4) Tomar una esquina aleatoria si está disponible
   const corners = [0,2,6,8].filter(i=>!board[i]);
   if(corners.length) return makeMove(corners[Math.floor(Math.random()*corners.length)],'O');
-  // 5) Else, pick any random available cell
+  // 5) Si no, elegir cualquier celda disponible al azar
   const empties = board.map((v,i)=>v?null:i).filter(Number.isFinite);
   const pick = empties[Math.floor(Math.random()*empties.length)];
   pick !== undefined && makeMove(pick,'O');
 }
 
-// ====== CHECK IF PLAYER HAS WON ======
+// ====== COMPROBAR SI UN JUGADOR HA GANADO ======
 function isWinner(player){
   return wins.some(([a,b,c]) => board[a]===player && board[b]===player && board[c]===player);
 }
 
-// ====== RESTART GAME ======
+// ====== REINICIAR JUEGO ======
 function restart(){
   board = Array(9).fill(null);
   current = 'X';
@@ -150,25 +150,25 @@ function restart(){
   createCells();
   updateStatus();
   lineIndicator.classList.remove('show');
-  // Reset styles on all cells
+  // Reiniciar estilos en todas las celdas
   document.querySelectorAll('.cell').forEach(c=> c.style.boxShadow = '');
 }
 
-// ====== EVENT LISTENERS ======
+// ====== EVENTOS ======
 modeBtn.addEventListener('click', ()=>{
-  // Switch between 2 players and AI mode
+  // Cambiar entre 2 jugadores y modo IA
   twoPlayers = !twoPlayers;
-  modeBtn.textContent = twoPlayers ? 'Mode: 2 players' : 'Mode: vs AI (easy)';
+  modeBtn.textContent = twoPlayers ? 'Modo: 2 jugadores' : 'Modo: vs IA (fácil)';
   restart();
 });
 
 restartBtn.addEventListener('click', restart);
 
-// ====== INIT GAME ======
+// ====== INICIALIZAR JUEGO ======
 createCells();
 updateStatus();
 
-// Extra: Keyboard shortcut "0" to restart the game
+// Extra: Atajo de teclado "0" para reiniciar el juego
 window.addEventListener('keydown', (e)=>{
   if(e.key === '0') restart();
 });

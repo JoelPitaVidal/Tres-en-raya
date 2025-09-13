@@ -5,57 +5,57 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tres en raya</title>
 
-  <!-- Link to external CSS file -->
+  <!-- Enlace al archivo CSS externo -->
   <link rel="stylesheet" href="../Styles/style.css" />
 
-  <!-- Link to Favicon -->  
-    <link rel="icon" href="../../assets/tres-en-raya.png" type="image/png">
+  <!-- Enlace al Favicon -->  
+  <link rel="icon" href="../../assets/tres-en-raya.png" type="image/png">
 
 </head>
 <body>
-  <!-- Main container for the game -->
+  <!-- Contenedor principal del juego -->
   <div class="container" role="application" aria-label="Tres en raya">
     
-    <!-- ====== HEADER ====== -->
+    <!-- ====== ENCABEZADO ====== -->
     <header>
       <div>
-        <!-- Game title -->
+        <!-- Título del juego -->
         <h1>Tres en raya</h1>
-        <!-- Dynamic status (whose turn, winner, or draw) -->
+        <!-- Estado dinámico (turno actual, ganador o empate) -->
         <div class="status" id="status">Turno: X</div>
       </div>
       <div>
-        <!-- Undo button (not implemented yet) -->
+        <!-- Botón de deshacer (aún no implementado) -->
         <button id="undoBtn" title="Deshacer (no implementado)">Deshacer</button>
-        <!-- Restart button -->
+        <!-- Botón de reiniciar -->
         <button id="restartBtn" class="primary">Reiniciar</button>
       </div>
     </header>
 
-    <!-- ====== GAME BOARD ====== -->
-    <!-- The game cells will be generated dynamically via JavaScript -->
+    <!-- ====== TABLERO DE JUEGO ====== -->
+    <!-- Las celdas del juego se generarán dinámicamente mediante JavaScript -->
     <div class="board" id="board" aria-live="polite"></div>
 
-    <!-- Visual effect: animated line when a player wins -->
+    <!-- Efecto visual: línea animada cuando un jugador gana -->
     <div class="line" id="lineIndicator"></div>
 
-    <!-- ====== CONTROLS ====== -->
+    <!-- ====== CONTROLES ====== -->
     <div class="controls">
-      <!-- Information about players -->
+      <!-- Información sobre los jugadores -->
       <div style="color:var(--muted);font-size:13px">Jugador humano: X — IA/otro: O</div>
       <div>
-        <!-- Button to toggle between 2 players and AI mode -->
+        <!-- Botón para alternar entre modo 2 jugadores y modo IA -->
         <button id="modeBtn">Modo: 2 jugadores</button>
       </div>
     </div>
 
-    <!-- ====== FOOTER / TIP ====== -->
+    <!-- ====== PIE DE PÁGINA / CONSEJO ====== -->
     <footer>
-      Tip: haz clic en las celdas o usa teclado (1–9).
+      Consejo: haz clic en las celdas o usa el teclado (1–9).
     </footer>
   </div>
 
-  <!-- External JavaScript file (game logic) -->
+  <!-- Archivo JavaScript externo (lógica del juego) -->
   <script src="../Scripts/script.js"></script>
 </body>
 </html>
