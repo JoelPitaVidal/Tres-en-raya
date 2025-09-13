@@ -59,7 +59,7 @@ El objetivo es practicar lógica de programación, manejo del DOM y separación 
 
 ## ✨ Vista previa
 
-![preview](../../assets/muestra.jpg)  
+![preview](../../assets/muestra.png)  
 
 ---
 
