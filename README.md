@@ -1,70 +1,73 @@
-# 🎮 Tres en Raya (Tic-Tac-Toe)
+# 🎮 Tic-Tac-Toe
 
-Este es un proyecto simple del clásico juego **Tres en Raya (Tic-Tac-Toe)** implementado con **HTML**, **CSS** y **JavaScript**.  
-El objetivo es practicar lógica de programación, manejo del DOM y separación de archivos en un proyecto web.
+A simple project of the classic **Tic-Tac-Toe** game implemented with **HTML**, **CSS**, and **JavaScript**.  
+The goal of this project is to practice programming logic, DOM manipulation, and organizing files in a web project.
 
 ---
+
+## 📂 Folder Structure
+
 
 ## 📂 Estructura de carpetas
 
 └── src/
 ├── Index/
-│ └── index.html # Estructura del juego
+│ └── index.html # Game structure
 ├── Styles/
-│ └── style.css # Estilos y diseño del juego
+│ └── style.css # Game styles and design
 └── Scripts/
-└── script.js # Lógica del juego
+└── script.js # Game logic
 
 
 
 ---
 
-## 🚀 Cómo ejecutar el proyecto
+## 🚀 How to Run the Project
 
-1. Clona este repositorio o descarga los archivos.
-2. Abre el archivo **`index.html`** ubicado en `src/Index/` con tu navegador.
-3. ¡Listo! Ya puedes jugar al Tres en Raya.
-
----
-
-## 🎲 Funcionamiento del juego
-
-- El tablero es de **3x3** celdas.
-- El jugador **X** siempre empieza.
-- El turno se alterna automáticamente entre **X** y **O**.
-- El juego detecta:
-  - ✅ Si un jugador gana (3 en línea).
-  - 🤝 Si hay empate (todas las celdas llenas sin ganador).
-- Se puede **reiniciar** la partida en cualquier momento con el botón **Reiniciar**.
-- Hay dos modos de juego:
-  - **2 Jugadores** → Dos personas en el mismo dispositivo.
-  - **Jugador vs IA** → El jugador X contra una **IA básica** (la IA elige jugadas simples como centro, esquinas o bloqueo).
+1. Clone this repository or download the files.  
+2. Open the **`index.html`** file located in `src/Index/` in your web browser.  
+3. Enjoy playing Tic-Tac-Toe!
 
 ---
 
-## ⌨️ Atajos de teclado
+## 🎲 How the Game Works
 
-- Teclas **1–9** → Para marcar las celdas (arriba izquierda hasta abajo derecha).
-- Tecla **0** → Reinicia la partida.
+- The board has **3x3** cells.  
+- Player **X** always starts first.  
+- Turns alternate automatically between **X** and **O**.  
+- The game detects:  
+  - ✅ If a player wins (3 in a row).  
+  - 🤝 If there is a tie (all cells filled without a winner).  
+- You can **restart** the game anytime using the **Restart** button.  
+- Two game modes are available:  
+  - **2 Players** → Two people playing on the same device.  
+  - **Player vs AI** → Player X vs a **basic AI** (AI makes simple moves like choosing center, corners, or blocking).
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## ⌨️ Keyboard Shortcuts
 
-- **HTML5** → Estructura del juego.
-- **CSS3** → Estilos modernos y responsivos.
-- **JavaScript (ES6+)** → Lógica del juego, turnos, detección de ganador y modo IA.
+- Keys **1–9** → Mark cells (from top-left to bottom-right).  
+- Key **0** → Restart the game.
 
 ---
 
-## ✨ Vista previa
+## 🛠️ Technologies Used
+
+- **HTML5** → Game structure  
+- **CSS3** → Modern and responsive styling  
+- **JavaScript (ES6+)** → Game logic, turn management, winner detection, and AI mode
+
+---
+
+## ✨ Preview
 
 ![preview](https://i.imgur.com/tiKnTgA.png)  
-*(imagen ilustrativa del tablero, reemplaza con captura real de tu proyecto)*
+*(illustrative board image; replace with an actual screenshot of your project)*
 
 ---
 
-## 📜 Licencia
+## 📜 License
 
-Este proyecto es de uso libre con fines educativos.  
-Puedes modificarlo, mejorarlo y compartirlo como quieras. 🎉
+This project is free to use for educational purposes.  
+You can modify, improve, and share it however you like. 🎉
